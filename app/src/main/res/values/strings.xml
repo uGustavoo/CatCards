@@ -1,0 +1,59 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">CatCards</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Login and Registration -->
+    <string name="bem_vindo">Bem-vindo ao</string>
+    <string name="cadastrar_se">Cadastrar-se</string>
+    <string name="possui_conta">Já possui uma conta?</string>
+    <string name="entrar">Entrar</string>
+    <string name="insira_email">Insira seu e-mail</string>
+    <string name="insira_senha">Insira sua senha</string>
+    <string name="registrar">Registrar</string>
+    <string name="nao_tem_conta">Ainda não tem uma conta?</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Login</string>
+    <string name="email">E-Mail</string>
+    <string name="senha">Senha</string>
+    <string name="nao_registrado_ainda">Ainda não é registrado?</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="esqueceu_senha">Esqueceu sua senha?</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="repita_senha">Repetir Senha</string>
+    <string name="cadastro_bem_sucedido">Cadastrado com Sucesso</string>
+    <string name="obrigado">Obrigado por se cadastrar!</string>
+    <string name="aviso_redirecionamento">Você será redirecionado à página de login automaticamente. Se não for redirecionado</string>
+    <string name="ir_para_login">Ir Para Login ></string>
+    <string name="insira_nome">Insira seu nome</string>
+    <string name="nome">Nome</string>
+    <string name="confirme_senha">Confirme sua senha</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="crie_conta">Crie sua conta</string>
+    <string name="faca_login">Faça o seu login</string>
+    <string name="clique_aqui">Clique Aqui</string>
+    <string name="recuperar_senha">Recuperar Senha</string>
+    <string name="informe_email">Para recuperar a sua senha, informe o e-mail cadastrado na sua conta.</string>
+    <string name="ou">Ou</string>
+    <string name="criar_nova_conta">Crie uma nova conta</string>
+    <string name="recupere_senha">Recupere sua senha</string>
+
+    <!-- Option Menus -->
+    <string name="home">Home</string>
+    <string name="turmas">Turmas</string>
+    <string name="cards">Cards</string>
+    <string name="decks">Decks</string>
+    <string name="logout">Logout</string>
+    <string name="add">Adicionar</string>
+
+    <!-- Temporary Strings -->
+    <string name="sair">Sair</string>
+    <string name="outros">Outros</string>
+</resources>

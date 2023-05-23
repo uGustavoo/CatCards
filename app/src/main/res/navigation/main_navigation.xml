@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.app.catcards.uix.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_turmas"
+        android:name="com.app.catcards.uix.turmas.TurmasFragment"
+        android:label="@string/turmas"
+        tools:layout="@layout/fragment_turmas" />
+
+    <fragment
+        android:id="@+id/nav_decks"
+        android:name="com.app.catcards.uix.decks.DecksFragment"
+        android:label="@string/decks"
+        tools:layout="@layout/fragment_decks" />
+
+    <fragment
+        android:id="@+id/nav_cards"
+        android:name="com.app.catcards.uix.cards.CardsFragment"
+        android:label="@string/cards"
+        tools:layout="@layout/fragment_decks" />
+
+</navigation>

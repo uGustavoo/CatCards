@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1062419278935",
+    "project_id": "cards-c29c6",
+    "storage_bucket": "cards-c29c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062419278935:android:d7a5b0df1093843bab4712",
+        "android_client_info": {
+          "package_name": "com.app.catcards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062419278935-bqu70p9nlqf2om848lf22t1mki5vi6kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHKhclzwvWzFmKgn_emuputm-5CVXGVeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062419278935-bqu70p9nlqf2om848lf22t1mki5vi6kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
