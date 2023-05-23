@@ -4,35 +4,60 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.app.catcards.databinding.FragmentTurmasBinding
+import com.app.catcards.uix.firestore.TurmasAdapter
+import com.app.catcards.uix.firestore.TurmasData
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class TurmasFragment : Fragment() {
 
+    private val binding get() = _binding!!
     private var _binding: FragmentTurmasBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var dataList: ArrayList<TurmasData>
+    private var db = Firebase.firestore
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val turmasViewModel =
-            ViewModelProvider(this).get(TurmasViewModel::class.java)
-
         _binding = FragmentTurmasBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        turmasViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        recyclerView = binding.recyclerview
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.adapter = TurmasAdapter(ArrayList()) // Defina um adaptador vazio padrão aqui
+
+        dataList = arrayListOf()
+
+        db = FirebaseFirestore.getInstance()
+
+        db.collection("turmas")
+            .orderBy("registroTurma", Query.Direction.DESCENDING).get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    for (document in documents) {
+                        val data: TurmasData = document.toObject(TurmasData::class.java)
+                        dataList.add(data)
+                    }
+                    recyclerView.adapter = TurmasAdapter(dataList)
+                } else {
+                    recyclerView.adapter = TurmasAdapter(ArrayList())
+                }
+            }
+            .addOnFailureListener {
+                recyclerView.adapter = TurmasAdapter(ArrayList())
+                Toast.makeText(requireActivity(), it.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+
+        return binding.root
     }
 
     override fun onDestroyView() {

@@ -56,4 +56,7 @@
     <!-- Temporary Strings -->
     <string name="sair">Sair</string>
     <string name="outros">Outros</string>
+    <string name="usuario">Usuário</string>
+    <string name="deck">Deck</string>
+    <string name="turma">Turma</string>
 </resources>
