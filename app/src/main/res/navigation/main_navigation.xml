@@ -15,45 +15,27 @@
         android:id="@+id/nav_turmas"
         android:name="com.app.catcards.uix.turmas.TurmasFragment"
         android:label="@string/turmas"
-        tools:layout="@layout/fragment_turmas" >
-        <action
-            android:id="@+id/action_nav_turmas_to_nav_decks"
-            app:destination="@id/nav_decks" />
-    </fragment>
+        tools:layout="@layout/fragment_turmas" />
 
     <fragment
         android:id="@+id/nav_decks"
         android:name="com.app.catcards.uix.decks.DecksFragment"
         android:label="@string/decks"
-        tools:layout="@layout/fragment_decks" >
-        <action
-            android:id="@+id/action_nav_decks_to_nav_turmas"
-            app:destination="@id/nav_turmas" />
-        <action
-            android:id="@+id/action_nav_decks_to_nav_cards"
-            app:destination="@id/nav_cards" />
-    </fragment>
+        tools:layout="@layout/fragment_decks" />
 
     <fragment
         android:id="@+id/nav_cards"
         android:name="com.app.catcards.uix.cards.CardsFragment"
         android:label="@string/cards"
-        tools:layout="@layout/fragment_decks" >
+        tools:layout="@layout/fragment_cards" >
         <action
-            android:id="@+id/action_nav_cards_to_cardFragment"
-            app:destination="@id/cardFragment" />
-        <action
-            android:id="@+id/action_nav_cards_to_nav_decks"
-            app:destination="@id/nav_decks" />
+            android:id="@+id/action_nav_cards_to_nav_card"
+            app:destination="@id/nav_card" />
     </fragment>
     <fragment
-        android:id="@+id/cardFragment"
+        android:id="@+id/nav_card"
         android:name="com.app.catcards.uix.card.CardFragment"
         android:label="fragment_card"
-        tools:layout="@layout/fragment_card" >
-        <action
-            android:id="@+id/action_cardFragment_to_nav_cards"
-            app:destination="@id/nav_cards" />
-    </fragment>
+        tools:layout="@layout/fragment_card" />
 
 </navigation>

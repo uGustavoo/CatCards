@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         // Configurar barra de ação e navegação com configuração
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_turmas, R.id.nav_decks, R.id.nav_cards),
+            setOf(R.id.nav_home, R.id.nav_turmas, R.id.nav_decks, R.id.nav_cards, R.id.nav_card),
             drawerLayout
         )
 

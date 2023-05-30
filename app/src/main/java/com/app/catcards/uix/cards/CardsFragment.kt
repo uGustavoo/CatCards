@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.catcards.R
 import com.app.catcards.databinding.FragmentCardsBinding
 import com.app.catcards.uix.firestore.CardsAdapter
 import com.app.catcards.uix.firestore.CardsData
@@ -37,6 +39,10 @@ class CardsFragment : Fragment() {
         dataList = arrayListOf()
 
         db = FirebaseFirestore.getInstance()
+
+        binding.buttonId.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_cards_to_nav_card)
+        }
 
         db.collection("cards")
             .orderBy("registroCard", Query.Direction.DESCENDING).get()

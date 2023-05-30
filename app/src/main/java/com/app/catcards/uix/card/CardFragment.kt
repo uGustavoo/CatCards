@@ -18,20 +18,6 @@ import com.google.firebase.ktx.Firebase
 
 class CardFragment : Fragment() {
 
-    companion object {
-        private const val ARG_NOME_CARD = "arg_nome_card"
-        private const val ARG_RESPONSAVEL_CARD = "arg_responsavel_card"
-
-        fun newInstance(nomeCard: CardsData, responsavelCard: String): CardFragment {
-            val fragment = CardFragment()
-            val args = Bundle()
-            args.putString(ARG_NOME_CARD, nomeCard.toString())
-            args.putString(ARG_RESPONSAVEL_CARD, responsavelCard)
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
     private val binding get() = _binding!!
     private var _binding: FragmentCardBinding? = null
 
