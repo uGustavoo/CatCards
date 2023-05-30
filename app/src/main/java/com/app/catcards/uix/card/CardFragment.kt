@@ -1,4 +1,4 @@
-package com.app.catcards.uix.cards
+package com.app.catcards.uix.card
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,32 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app.catcards.databinding.FragmentCardsBinding
-import com.app.catcards.uix.firestore.CardsAdapter
+import com.app.catcards.databinding.FragmentCardBinding
+import com.app.catcards.uix.firestore.CardAdapter
 import com.app.catcards.uix.firestore.CardsData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CardsFragment : Fragment() {
+class CardFragment : Fragment() {
+
+    companion object {
+        private const val ARG_NOME_CARD = "arg_nome_card"
+        private const val ARG_RESPONSAVEL_CARD = "arg_responsavel_card"
+
+        fun newInstance(nomeCard: CardsData, responsavelCard: String): CardFragment {
+            val fragment = CardFragment()
+            val args = Bundle()
+            args.putString(ARG_NOME_CARD, nomeCard.toString())
+            args.putString(ARG_RESPONSAVEL_CARD, responsavelCard)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     private val binding get() = _binding!!
-    private var _binding: FragmentCardsBinding? = null
+    private var _binding: FragmentCardBinding? = null
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var dataList: ArrayList<CardsData>
@@ -28,11 +42,11 @@ class CardsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCardsBinding.inflate(inflater, container, false)
+        _binding = FragmentCardBinding.inflate(inflater, container, false)
 
         recyclerView = binding.recyclerview
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        recyclerView.adapter = CardsAdapter(ArrayList()) // Defina um adaptador vazio padrão aqui
+        recyclerView.adapter = CardAdapter(ArrayList()) // Defina um adaptador vazio padrão aqui
 
         dataList = arrayListOf()
 
@@ -46,13 +60,13 @@ class CardsFragment : Fragment() {
                         val data: CardsData = document.toObject(CardsData::class.java)
                         dataList.add(data)
                     }
-                    recyclerView.adapter = CardsAdapter(dataList)
+                    recyclerView.adapter = CardAdapter(dataList)
                 } else {
-                    recyclerView.adapter = CardsAdapter(ArrayList())
+                    recyclerView.adapter = CardAdapter(ArrayList())
                 }
             }
             .addOnFailureListener {
-                recyclerView.adapter = CardsAdapter(ArrayList())
+                recyclerView.adapter = CardAdapter(ArrayList())
                 Toast.makeText(requireActivity(), it.toString(), Toast.LENGTH_SHORT).show()
             }
 

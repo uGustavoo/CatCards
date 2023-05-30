@@ -7,24 +7,24 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.catcards.R
 
-class TurmasAdapter(
-    private val datalist: ArrayList<TurmasData>) :
-    RecyclerView.Adapter<TurmasAdapter.MyViewHolder>(){
+class CardsAdapter(
+    private val datalist: ArrayList<CardsData>) :
+    RecyclerView.Adapter<CardsAdapter.MyViewHolder>(){
 
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-        val tvTurma:TextView = itemView.findViewById(R.id.item_deck)
+        val tvCard:TextView = itemView.findViewById(R.id.item_card)
         val tvUsuario:TextView = itemView.findViewById(R.id.item_usuario)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_decks, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_cards, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvTurma.text = datalist[position].nomeTurma
-        holder.tvUsuario.text = datalist[position].responsavelTurma
+        holder.tvCard.text = datalist[position].nomeCard
+        holder.tvUsuario.text = datalist[position].responsavelCard
     }
 
     override fun getItemCount(): Int {

@@ -177,7 +177,7 @@
                 android:layout_marginEnd="17dp"/>
 
             <Button
-                android:id="@+id/buttom_criar_conta"
+                android:id="@+id/button_criar_conta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/criar_conta"
@@ -208,7 +208,7 @@
                     android:gravity="center_vertical" />
 
                 <Button
-                    android:id="@+id/buttom_nav_login"
+                    android:id="@+id/button_nav_login"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/log_in"

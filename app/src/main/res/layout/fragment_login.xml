@@ -106,7 +106,7 @@
                 android:layout_marginEnd="17dp"/>
 
             <Button
-                android:id="@+id/buttom_esqueceu_senha"
+                android:id="@+id/button_esqueceu_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/esqueceu_senha"
@@ -118,10 +118,10 @@
                 android:gravity="start"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="17dp"
-                android:layout_marginEnd="225dp" />
+                android:layout_marginEnd="185dp" />
 
             <Button
-                android:id="@+id/buttom_entrar"
+                android:id="@+id/button_entrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/entrar"
@@ -152,15 +152,14 @@
                     android:gravity="center_vertical" />
 
                 <Button
-                    android:id="@+id/buttom_nav_cadastro"
+                    android:id="@+id/button_nav_cadastro"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/cadastrar_se"
                     android:textColor="#2F92A5"
                     android:backgroundTint="@color/white"
                     android:textAllCaps="false"
-                    android:stateListAnimator="@null"
-                    android:layout_marginStart="8dp" />
+                    android:stateListAnimator="@null" />
 
             </LinearLayout>
         </LinearLayout>

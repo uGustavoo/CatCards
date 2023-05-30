@@ -38,21 +38,21 @@ class LoginFragment : Fragment() {
 
     // Este método configura o comportamento do botão "Cadastro"
     private fun setupCadastroButton() {
-        binding.buttomNavCadastro.setOnClickListener {
+        binding.buttonNavCadastro.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_cadastroFragment)
         }
     }
 
     // Este método levará ao fragmento de "Recuperacao"
     private fun setupRedefinirButton() {
-        binding.buttomEsqueceuSenha.setOnClickListener {
+        binding.buttonEsqueceuSenha.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_recuperacaoFragment)
         }
     }
 
     // Este método configura o comportamento do botão "Entrar"
     private fun setupEntrarButton() {
-        binding.buttomEntrar.setOnClickListener {
+        binding.buttonEntrar.setOnClickListener {
             val email = binding.getEmail.text.toString()
             val senha = binding.getSenha.text.toString()
 

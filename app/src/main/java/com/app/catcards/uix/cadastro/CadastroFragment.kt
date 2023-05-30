@@ -33,8 +33,8 @@ class CadastroFragment : Fragment() {
         binding = FragmentCadastroBinding.inflate(inflater, container, false)
 
         // Definir ouvintes de clique para botões
-        binding.buttomNavLogin.setOnClickListener { navigateLogin() }
-        binding.buttomCriarConta.setOnClickListener { cadastrarUsuario() }
+        binding.buttonNavLogin.setOnClickListener { navigateLogin() }
+        binding.buttonCriarConta.setOnClickListener { cadastrarUsuario() }
 
         return binding.root
     }

@@ -59,4 +59,10 @@
     <string name="usuario">Usuário</string>
     <string name="deck">Deck</string>
     <string name="turma">Turma</string>
+    <string name="pergunta">Pergunta</string>
+    <string name="card">Card</string>
+    <string name="resposta_a">Resposta A</string>
+    <string name="resposta_b">Resposta B</string>
+    <string name="resposta_c">Resposta C</string>
+    <string name="resposta_d">Resposta D</string>
 </resources>

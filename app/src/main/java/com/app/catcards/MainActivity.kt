@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -44,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         val bottomView: BottomNavigationView = binding.appBarMain.bottomNavigationView
-
-
 
         // o menu deve ser considerado como destinos de nível superior.
 
@@ -94,6 +93,8 @@ class MainActivity : AppCompatActivity() {
                     exibirDialogoAdicionarTurma(this)
                 } else if (currentDestination == R.id.nav_decks) {
                     exibirDialogoAdicionarDeck(this)
+                }else if (currentDestination == R.id.nav_cards) {
+                    exibirDialogoAdicionarCard(this)
                 }
             }
         }
@@ -105,30 +106,52 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Adicionar Turma")
 
-        val input = EditText(context)
-        builder.setView(input)
+        val layout = LinearLayout(context)
+        layout.orientation = LinearLayout.VERTICAL
+
+        val inputNome = EditText(context)
+        inputNome.hint = "Nome da Turma"
+        val layoutParamsNome = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        layoutParamsNome.setMargins(16, 16, 16, 16)
+        inputNome.layoutParams = layoutParamsNome
+        layout.addView(inputNome)
+
+        val inputDescricao = EditText(context)
+        inputDescricao.hint = "Descrição da Turma"
+        layout.addView(inputDescricao)
+        inputDescricao.layoutParams = layoutParamsNome
+
+        builder.setView(layout)
 
         builder.setPositiveButton("Adicionar") { _, _ ->
-            val sharedPref = getSharedPreferences("perfil_usuario", Context.MODE_PRIVATE)
+            val nomeTurma = inputNome.text.toString().trim()
+            val descricaoTurma = inputDescricao.text.toString().trim()
 
-            val codigoTurma = gerarRandomCode("turmas")
-            val nomeTurma = input.text.toString().trim()
-            val responsavelTurma = sharedPref.getString("nome_usuario", null)
+            if (nomeTurma.isNotEmpty() && descricaoTurma.isNotEmpty()) {
+                val sharedPref = getSharedPreferences("perfil_usuario", Context.MODE_PRIVATE)
+                val codigoTurma = gerarRandomCode("turmas")
+                val responsavelTurma = sharedPref.getString("nome_usuario", null)
 
+                val mapTurma = hashMapOf(
+                    "codTurma" to codigoTurma,
+                    "nomeTurma" to nomeTurma,
+                    "descricaoTurma" to descricaoTurma,
+                    "registroTurma" to Timestamp.now(),
+                    "responsavelTurma" to responsavelTurma
+                )
 
-            val mapTurma = hashMapOf(
-                "codigoTurma" to codigoTurma,
-                "nomeTurma" to nomeTurma,
-                "registroTurma" to Timestamp.now(),
-                "responsavelTurma" to responsavelTurma
-            )
-
-            db.collection("turmas")
-                .add(mapTurma)
-                .addOnCompleteListener {
-                    Toast.makeText(this, "Turma adicionada: $nomeTurma", Toast.LENGTH_LONG).show()
-                    recreate()
-                }
+                db.collection("turmas")
+                    .add(mapTurma)
+                    .addOnCompleteListener {
+                        Toast.makeText(this, "Turma adicionada: $nomeTurma", Toast.LENGTH_LONG).show()
+                        recreate()
+                    }
+            } else {
+                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
+            }
         }
 
         builder.setNegativeButton("Cancelar", null)
@@ -141,30 +164,52 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Adicionar Deck")
 
-        val input = EditText(context)
-        builder.setView(input)
+        val layout = LinearLayout(context)
+        layout.orientation = LinearLayout.VERTICAL
+
+        val inputNome = EditText(context)
+        inputNome.hint = "Nome do Deck"
+        val layoutParamsNome = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        layoutParamsNome.setMargins(16, 16, 16, 16)
+        inputNome.layoutParams = layoutParamsNome
+        layout.addView(inputNome)
+
+        val inputDescricao = EditText(context)
+        inputDescricao.hint = "Descrição do Deck"
+        layout.addView(inputDescricao)
+        inputDescricao.layoutParams = layoutParamsNome
+
+        builder.setView(layout)
 
         builder.setPositiveButton("Adicionar") { _, _ ->
-            val sharedPref = getSharedPreferences("perfil_usuario", Context.MODE_PRIVATE)
+            val nomeDeck = inputNome.text.toString().trim()
+            val descricaoDeck = inputDescricao.text.toString().trim()
 
-            val codigoDeck = gerarRandomCode("decks")
-            val nomeDeck = input.text.toString().trim()
-            val responsavelDeck = sharedPref.getString("nome_usuario", null)
+            if (nomeDeck.isNotEmpty() && descricaoDeck.isNotEmpty()) {
+                val sharedPref = getSharedPreferences("perfil_usuario", Context.MODE_PRIVATE)
+                val codigoDeck = gerarRandomCode("decks")
+                val responsavelDeck = sharedPref.getString("nome_usuario", null)
 
+                val mapDeck = hashMapOf(
+                    "codDeck" to codigoDeck,
+                    "nomeDeck" to nomeDeck,
+                    "descricaoDeck" to descricaoDeck,
+                    "registroDeck" to Timestamp.now(),
+                    "responsavelDeck" to responsavelDeck
+                )
 
-            val mapDeck = hashMapOf(
-                "codigoDeck" to codigoDeck,
-                "nomeDeck" to nomeDeck,
-                "registroDeck" to Timestamp.now(),
-                "usuarioDeck" to responsavelDeck
-            )
-
-            db.collection("decks")
-                .add(mapDeck)
-                .addOnCompleteListener {
-                    Toast.makeText(this, "Deck adicionado: $nomeDeck", Toast.LENGTH_LONG).show()
-                    recreate()
-                }
+                db.collection("decks")
+                    .add(mapDeck)
+                    .addOnCompleteListener {
+                        Toast.makeText(this, "Deck adicionado: $nomeDeck", Toast.LENGTH_LONG).show()
+                        recreate()
+                    }
+            } else {
+                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
+            }
         }
 
         builder.setNegativeButton("Cancelar", null)
@@ -172,6 +217,95 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
+
+    private fun exibirDialogoAdicionarCard(context: Context) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Adicionar Card")
+
+        val layout = LinearLayout(context)
+        layout.orientation = LinearLayout.VERTICAL
+
+        val inputNome = EditText(context)
+        inputNome.hint = "Nome do Card"
+        val layoutParamsNome = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        layoutParamsNome.setMargins(16, 16, 16, 16)
+        inputNome.layoutParams = layoutParamsNome
+        layout.addView(inputNome)
+
+        val inputPergunta = EditText(context)
+        inputPergunta.hint = "Pergunta"
+        layout.addView(inputPergunta)
+        inputPergunta.layoutParams = layoutParamsNome
+
+        val inputRespostaA = EditText(context)
+        inputRespostaA.hint = "Resposta A"
+        layout.addView(inputRespostaA)
+        inputRespostaA.layoutParams = layoutParamsNome
+
+        val inputRespostaB = EditText(context)
+        inputRespostaB.hint = "Resposta B"
+        layout.addView(inputRespostaB)
+        inputRespostaB.layoutParams = layoutParamsNome
+
+        val inputRespostaC = EditText(context)
+        inputRespostaC.hint = "Resposta C"
+        layout.addView(inputRespostaC)
+        inputRespostaC.layoutParams = layoutParamsNome
+
+        val inputRespostaD = EditText(context)
+        inputRespostaD.hint = "Resposta D"
+        layout.addView(inputRespostaD)
+        inputRespostaD.layoutParams = layoutParamsNome
+
+        builder.setView(layout)
+
+        builder.setPositiveButton("Adicionar") { _, _ ->
+            val nomeCard = inputNome.text.toString().trim()
+            val perguntaCard = inputPergunta.text.toString().trim()
+            val resCardA = inputRespostaA.text.toString().trim()
+            val resCardB = inputRespostaB.text.toString().trim()
+            val resCardC = inputRespostaC.text.toString().trim()
+            val resCardD = inputRespostaD.text.toString().trim()
+
+            if (nomeCard.isNotEmpty() && perguntaCard.isNotEmpty() &&
+                resCardA.isNotEmpty() && resCardB.isNotEmpty() && resCardC.isNotEmpty() && resCardD.isNotEmpty()
+            ) {
+                val sharedPref = getSharedPreferences("perfil_usuario", Context.MODE_PRIVATE)
+                val codigoCard = gerarRandomCode("cards")
+                val responsavelCard = sharedPref.getString("nome_usuario", null)
+
+                val mapCard = hashMapOf(
+                    "codCard" to codigoCard,
+                    "nomeCard" to nomeCard,
+                    "perguntaCard" to perguntaCard,
+                    "resCard_A" to resCardA,
+                    "resCard_B" to resCardB,
+                    "resCard_C" to resCardC,
+                    "resCard_D" to resCardD,
+                    "responsavelCard" to responsavelCard,
+                    "registroCard" to Timestamp.now(),
+                )
+
+                db.collection("cards")
+                    .add(mapCard)
+                    .addOnCompleteListener {
+                        Toast.makeText(this, "Card adicionado: $nomeCard", Toast.LENGTH_LONG).show()
+                        recreate()
+                    }
+            } else {
+                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        builder.setNegativeButton("Cancelar", null)
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
 
     private fun gerarRandomCode(collection: String): String {
         val random = Random()
