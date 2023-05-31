@@ -4,11 +4,11 @@ data class DecksData(
     val codDeck: String? = null,
     val nomeDeck: String? = null,
     val usuarioDeck: String? = null,
-    val codTurma: Int? = null
+    val codTurma: String? = null
 )
 
 data class TurmasData(
-    val codTurma: Int? = null,
+    val codTurma: String? = null,
     val nomeTurma: String? = null,
     val responsavelTurma: String? = null,
     val decks: MutableList<DecksData> = mutableListOf()

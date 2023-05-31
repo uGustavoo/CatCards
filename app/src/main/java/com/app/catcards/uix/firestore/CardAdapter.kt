@@ -7,13 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.catcards.R
 
-class CardAdapter(
-    private val datalist: ArrayList<CardsData>) :
-    RecyclerView.Adapter<CardAdapter.MyViewHolder>(){
+class CardAdapter(private val cardData: CardsData) :
+    RecyclerView.Adapter<CardAdapter.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
-        val tvPergutna: TextView = itemView.findViewById(R.id.item_pergunta)
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvPergunta: TextView = itemView.findViewById(R.id.item_pergunta)
         val tvResCardA: TextView = itemView.findViewById(R.id.item_res_a)
         val tvResCardB: TextView = itemView.findViewById(R.id.item_res_b)
         val tvResCardC: TextView = itemView.findViewById(R.id.item_res_c)
@@ -21,19 +19,20 @@ class CardAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_card, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.activity_card, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvPergutna.text = datalist[position].perguntaCard
-        holder.tvResCardA.text = datalist[position].resCard_A
-        holder.tvResCardB.text = datalist[position].resCard_B
-        holder.tvResCardC.text = datalist[position].resCard_C
-        holder.tvResCardD.text = datalist[position].resCard_D
+        holder.tvPergunta.text = cardData.perguntaCard
+        holder.tvResCardA.text = cardData.resCard_A
+        holder.tvResCardB.text = cardData.resCard_B
+        holder.tvResCardC.text = cardData.resCard_C
+        holder.tvResCardD.text = cardData.resCard_D
     }
 
     override fun getItemCount(): Int {
-        return datalist.size
+        return 1
     }
 }
