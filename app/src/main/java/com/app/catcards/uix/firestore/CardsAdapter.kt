@@ -37,4 +37,5 @@ class CardsAdapter(
     override fun getItemCount(): Int {
         return dataList.size
     }
+
 }

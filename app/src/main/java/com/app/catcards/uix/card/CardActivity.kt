@@ -25,10 +25,11 @@ class CardActivity : AppCompatActivity() {
 
         if (codCard != null) {
             db.collection("cards")
-                .document(codCard)
+                .whereEqualTo("codCard", codCard)
                 .get()
-                .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
+                .addOnSuccessListener { querySnapshot ->
+                    if (!querySnapshot.isEmpty) {
+                        val document = querySnapshot.documents[0]
                         val cardData: CardsData = document.toObject(CardsData::class.java)!!
                         binding.itemPergunta.text = cardData.perguntaCard
                         binding.itemResA.text = cardData.resCard_A
@@ -43,8 +44,8 @@ class CardActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(this@CardActivity, it.toString(), Toast.LENGTH_SHORT).show()
+                .addOnFailureListener { exception ->
+                    Toast.makeText(this@CardActivity, exception.toString(), Toast.LENGTH_SHORT).show()
                 }
         }
     }
